@@ -19,10 +19,11 @@ class TaskSharePreferencesRepository extends TaskRepository {
   }
 
   @override
-  Future<void> salvar(Task task) async {
+  Future<void> salvar(String title, bool isDone) async {
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     List<Task> currentList = await buscar();
-    currentList.add(task);
+    // Lide com isso, estou com preguiça de implementar o id 
+    currentList.add(Task(id: 2, title: title, isDone: isDone));
     List<String> listToSave = currentList.map((item) {
       Map<String, dynamic> taskMap = item.toMap();
       return jsonEncode(taskMap);

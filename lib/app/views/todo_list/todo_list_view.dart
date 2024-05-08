@@ -47,7 +47,8 @@ class _TodoListViewState extends State<TodoListView> {
       }),
     ).then((value) async {
       if (value != null && value.isNotEmpty) {
-        await _controller.addTask(Task(title: value, isDone: false));
+        // TODO: Vamos construir (Sandy e Junior)
+        // await _controller.addTask();
         setState(() {
           _buscarTarefas();
         });

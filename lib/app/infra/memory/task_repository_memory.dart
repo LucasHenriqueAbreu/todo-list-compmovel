@@ -10,8 +10,9 @@ class TaskRepositoryMemory extends TaskRepository {
   }
 
   @override
-  Future<void> salvar(Task task) async {
+  Future<void> salvar(String title, bool isDone) async {
     await Future.delayed(const Duration(seconds: 2));
+    var task = Task(id: _tasks.length + 1, title: title, isDone: isDone);
     _tasks.add(task);
   }
 

@@ -1,6 +1,6 @@
 import 'package:todo/app/models/task.dart';
 
 abstract class TaskRepository {
-  Future<void> salvar(Task task);
+  Future<void> salvar(String title, bool isDone);
   Future<List<Task>> buscar();
 }
