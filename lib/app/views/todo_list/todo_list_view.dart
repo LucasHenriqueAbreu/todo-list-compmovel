@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/app/infra/share_preferences/task_share_preferences_repository.dart';
-import 'package:todo/app/models/task.dart';
+import 'package:todo/app/infra/sqlite/task_sqlite_repository.dart';
 import 'package:todo/app/views/register_task/register_task_view.dart';
 import 'package:todo/app/views/todo_list/todo_list_controller.dart';
 import 'package:todo/app/views/todo_list/widgets/task_item.dart';
@@ -14,7 +14,7 @@ class TodoListView extends StatefulWidget {
 
 class _TodoListViewState extends State<TodoListView> {
   final TodoListController _controller = TodoListController(
-    repository: TaskSharePreferencesRepository(),
+    repository: TaskSqliteRepository(),
   );
 
   @override
@@ -47,8 +47,7 @@ class _TodoListViewState extends State<TodoListView> {
       }),
     ).then((value) async {
       if (value != null && value.isNotEmpty) {
-        // TODO: Vamos construir (Sandy e Junior)
-        // await _controller.addTask();
+        await _controller.addTask(value, false);
         setState(() {
           _buscarTarefas();
         });

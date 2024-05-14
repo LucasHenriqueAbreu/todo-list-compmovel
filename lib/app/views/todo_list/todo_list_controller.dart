@@ -11,11 +11,11 @@ class TodoListController {
   get tasks => _tasks;
 
   Future<void> addTask(String title, bool isDone) async {
-    // TODO: vamos corrigir
-    // await repository.salvar(newTask);
+    await repository.salvar(title, isDone);
   }
   
   Future<void> buscarTarefas() async {
     _tasks = await repository.buscar();
+    print(_tasks);
   }
 }

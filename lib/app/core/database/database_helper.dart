@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  DatabaseHelper._();
+  DatabaseHelper._contructor();
   Database? _database;
-  static DatabaseHelper instance = DatabaseHelper._();
+  static DatabaseHelper instance = DatabaseHelper._contructor();
 
   Future<Database> get database async {
     _database ??= await _getConnection();

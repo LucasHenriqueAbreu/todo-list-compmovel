@@ -15,5 +15,11 @@ class TaskRepositoryMemory extends TaskRepository {
     var task = Task(id: _tasks.length + 1, title: title, isDone: isDone);
     _tasks.add(task);
   }
+  
+  @override
+  Future<void> update(Task task) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 
 }

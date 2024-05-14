@@ -8,22 +8,24 @@ class TaskSqliteRepository extends TaskRepository {
   Future<List<Task>> buscar() async {
     Database db = await DatabaseHelper.instance.database;
     var results = await db.rawQuery('SELECT * FROM todo;');
-    return results.map((e) => Task.fromMap(e)).toList();
-    // Faz a mesma coisa que a linha acima, porém, 
-    // de maneira mais verbosa
-    // List<Task> tasks = [];
-    // for (var i = 0; i < results.length; i++) {
-    //   var result = results[i];
-    //   var task = Task.fromMap(result);
-    //   tasks.add(task);
-    // }
-    // return tasks;
+    return results.map((e) {
+      final task = Task.fromMap(e);
+      return task;
+    }).toList();
   }
 
   @override
-  Future<void> salvar(String title, bool isDone) {
-    // TODO: implement salvar
+  Future<void> salvar(String title, bool isDone) async {
+    Database db = await DatabaseHelper.instance.database;
+    await db.rawInsert(
+      'INSERT INTO todo(title, isDone) VALUES(?, ?)',
+      [title, isDone],
+    );
+  }
+  
+  @override
+  Future<void> update(Task task) {
+    // TODO: implement update
     throw UnimplementedError();
   }
-
 }

@@ -31,4 +31,10 @@ class TaskSharePreferencesRepository extends TaskRepository {
     await sharedPreferences.setStringList('tasks',listToSave);
   }
   
+  @override
+  Future<void> update(Task task) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
+  
 }

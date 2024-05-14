@@ -13,7 +13,7 @@ class Task {
     return Task(
       id: map['id'],
       title: map['title'],
-      isDone: map['isDone'],
+      isDone: map['isDone'] == null || map['isDone'] == 0 ? false : true,
     );
   }
 
