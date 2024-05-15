@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todo/app/infra/sqlite/task_sqlite_repository.dart';
-import 'package:todo/app/infra/task_repository.dart';
 import 'package:todo/app/models/task.dart';
 
 class TaskItem extends StatefulWidget {
@@ -13,6 +12,7 @@ class TaskItem extends StatefulWidget {
 
 class _TaskItemState extends State<TaskItem> {
   final TaskSqliteRepository repository = TaskSqliteRepository();
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -22,7 +22,7 @@ class _TaskItemState extends State<TaskItem> {
         onChanged: (bool? value) { 
           setState(() {
             widget.task.isDone = value ?? false;
-            repository.update(task);
+            repository.update(widget.task);
           });
         },
       ),

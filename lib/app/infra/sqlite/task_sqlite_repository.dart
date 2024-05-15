@@ -24,8 +24,11 @@ class TaskSqliteRepository extends TaskRepository {
   }
   
   @override
-  Future<void> update(Task task) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(Task task) async {
+    Database db = await DatabaseHelper.instance.database;
+    await db.rawUpdate(
+      'UPDATE todo SET title = ?, isDone = ? WHERE id = ?',
+      [task.title, task.isDone, task.id],
+    );
   }
 }
